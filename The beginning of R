@@ -1,0 +1,133 @@
+(c(1:10))
+(c(1,3,5,3))
+(x=seq(5,by=5,length.out = 8))
+x[1:5]
+c(1:10)
+x[3:5]
+(x=1:20)
+x=1:20
+(y=seq(10,by=3,along.with = x))
+(y[-5:-1])
+#因子
+(x=c('a','a','b','o'))
+(x=factor(c('a','a','b','o')))
+(unclass(x))
+(x=factor(c('a','b','ab','o','b'),levels = c('b','a','o','ab')))#修改对应关系
+(unclass(x))
+(f2=gl(4,3,labels = c('red','blue','green','yellow')))
+#创建矩阵对象
+(x=matrix(nrow = 2, ncol = 3))
+(x=matrix(c(1:18),nrow=3,ncol=6))
+(x=matrix(1:18,nrow = 3,ncol = 6,byrow = T))#byrow 按行进行填充
+#第二种方法
+(x=1:18)
+(dim(x)=c(3,6));x
+#第三种方法
+(x=1:10)
+(y=11:20)
+(z=21:30)
+(m1=rbind(x,y,z))
+(m2=cbind(x,y,z)) 
+#矩阵访问
+(x=matrix(1:18,3,6,byrow=T))
+(x[2,3])
+(x[2,])
+(x[,3])
+#给矩阵的行列命名
+(colnames(x)=c('c1','c2','c3','c4','c5','c6'))
+rownames()
+x  
+#the functions of matrix
+(m1=matrix(1:12,3,4))
+(m2=matrix(13:24,3,4))
+m1;m2
+m1+10
+m1+m2
+m1*10
+m1*m2#不是数学中的定义是R语言自己的定义的 对应元素的相乘
+m1%*%t(m2)#数学定义的矩阵乘法 t为转置
+
+#生成对角矩阵
+(diag(4))
+(diag(c(1:4)))
+(a=matrix(1:16,4,4))
+diag(a)#提取对角元素
+
+#求逆
+(x=matrix(rnorm(16,0,1),4,4))
+(y=solve(x))
+x%*%y
+b=1:4
+solve(x,b)#本质上求解线性方程组
+
+#数据框创建
+(a=data.frame(fx=rnorm(20,0,1),fy=runif(10,10,20),fmonth=1:10))
+#提取
+y3=a$fx
+y3
+#能用不建议使用
+(y2=a[[1]][2])
+(y2=a[['fx']][2])
+search()#反应当前的搜索路径
+attach(a)#把对象挂到搜索路径中去
+fx
+search()
+detach(a)#把对象从搜索路径去掉
+
+(a=w
+ith(a,{fx=rnorm(10,10,20)}))
+a<- within( a, { fx=1:10})#能代替原值
+
+a$fz= a$fx+a$fy
+a#直接添加域和运算符
+subset#查询或者按照条件过滤的运算符
+b=subset(a, fx>1&fmonth==8,select = c(fx,fmonth))
+b
+b<-edit(a)#进行修改 并赋给另一个变量
+fix#在原变量中进行修改 
+
+
+
+#数组和列表
+(a=list(x=1:10,y=matrix(1:16,4,4),z=data.frame()))
+names(a)=c('c1','c2','c3')
+a
+c=a['y']
+c
+class(c)
+c=a[['y']]#两层方括号的话能取到矩阵
+c
+class(c)
+
+a$y#一般用这个提取 
+class(a$y)
+array(1:60,c(3:4:5))
+
+x=c(1:10,'hello',T)
+x
+mode(x)
+class(x)
+
+#分支结构
+#if... else...
+
+(Brand=paste(c('Brand'),1:9,sep = ''))
+(PName=paste(c('Dell'),1:9,sep = ''))
+(Mem=rep(c('1G','2G','4G'),times=3))
+(Feq=rep(c('2.2G','2.8G','3.3G'),each=3))
+(Price=rep(c(1000,2000,5000),3))
+PC=data.frame(Brand,PName,Mem,Feq,Price)
+PC
+
+(PC$PD=rep('cheap',9))
+PC
+for(i in 1:nrow(PC)){
+  if (PC[i,'Price']>3000){
+    PC[i,'PD']='Expensive'
+  }
+}
+PC
+#ifelse函数
+PC$PD2=ifelse(PC$Price>3000,'Expensive','cheap')
+PC
+#ifelse比较好
